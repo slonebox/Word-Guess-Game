@@ -1,11 +1,11 @@
 // Define word options for the hangman game
-var pokemon = ["BULBASAUR", "CHARMANDER", "SQUIRTLE", "PIKACHU", "EEVEE"];
+var pokemon = ["BULBASAUR","CHARMANDER","SQUIRTLE","PIKACHU","EEVEE"];
 
 // Define variables that will record values for the game
 var wins = 0;
 var losses = 0;
 var guesses = 10;
-var lettersGuessed = [""];
+var lettersGuessed = [];
 
 //Variable for the start button
 var startButton = document.getElementById("start-button");
@@ -19,19 +19,25 @@ var lettersGuessedText = document.getElementById("letters-guessed-text");
 var winsText = document.getElementById("wins-text");
 var lossesText = document.getElementById("losses-text");
 
-//Initiate the game with press of button
 
- var randomPokemon = function randomPokemonFunction (pokemon) {
-    // Assigns a random Pokemon to be guessed
-    return pokemon[Math.floor(Math.random() * pokemon.length)];
-    document.getElementById
-    //Why can't I reach the document here?
+
+//Select a random pokemon
+var randomPokemon = pokemon[Math.floor(Math.random() * pokemon.length)];
+console.log(randomPokemon);
+
+//Displays random word as an series of empty spaces to guess
+var answer = [];
+for (var i = 0; i < randomPokemon.length; i++) {
+    answer[i] = "_";
 }
-//Random Pokemon successfully logs to the console
-console.log(randomPokemon(pokemon));
-currentPokemonText.innerHTML = randomPokemon;
+console.log(answer);
 
-//Need to figure out a way to print this name to the HTML; display as random(pokemon).length " _ _ _ _ _ "
+
+
+
+
+var remainingLetters = randomPokemon.length;
+//Need to figure out a way to print this name to the HTML"
 
 //Add Event Listener for when User Guesses a Letter with document.addEventListener("keyup", function(event) {}
 
