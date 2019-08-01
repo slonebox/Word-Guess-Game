@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/CSS" href="Assets/CSS/reset.css">
     <link rel="stylesheet" type="text/CSS" href="Assets/CSS/style.css">
-    <script src="Assets/JavaScript/game.js"></script>
     <title>Who's That Pokémon!</title>
 </head>
 <body>
@@ -14,7 +13,7 @@
     <br>
     <p id="instructions-text"><strong>Instructions: </strong>Press the button to begin, then press any letter keys to  guess the name of a Pokémon. The game ends after you sucessfully spell the Pokémon's name or after 10 incorrect guesses. Good luck!</p>
     <br>
-    <button id="start-button" onclick="">Start</button>
+    <button id="start-button" onclick="clickFunction()">Start</button>
     <br>
     <h3 id="Pokemon-label-text">Pokémon</h3>
     <br>
@@ -27,7 +26,6 @@
     <div id="wins-text"></div>
     <br>
     <div id="losses-text"></div>
-
-    
+    <script src="Assets/JavaScript/game.js"></script>
 </body>
 </html>

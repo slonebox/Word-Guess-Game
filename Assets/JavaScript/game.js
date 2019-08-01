@@ -1,11 +1,13 @@
 // Define word options for the hangman game
 var pokemon = ["BULBASAUR","CHARMANDER","SQUIRTLE","PIKACHU","EEVEE"];
+console.log("Pokemon Options:" + pokemon)
 
 // Define variables that will record values for the game
 var wins = 0;
 var losses = 0;
 var guesses = 10;
 var lettersGuessed = [];
+console.log( "Wins: " + wins, "Losses: " + losses, "Guesses: " + guesses, "Letters Guessed: " + lettersGuessed);
 
 //Variable for the start button
 var startButton = document.getElementById("start-button");
@@ -19,25 +21,33 @@ var lettersGuessedText = document.getElementById("letters-guessed-text");
 var winsText = document.getElementById("wins-text");
 var lossesText = document.getElementById("losses-text");
 
-
+clickFunction = function () {
+    console.log("I was clicked");
+}
 
 //Select a random pokemon
 var randomPokemon = pokemon[Math.floor(Math.random() * pokemon.length)];
-console.log(randomPokemon);
+console.log("Random Pokemon Generated: " + randomPokemon);
+currentPokemonText.textContent = randomPokemon;
 
 //Displays random word as an series of empty spaces to guess
 var answer = [];
 for (var i = 0; i < randomPokemon.length; i++) {
     answer[i] = "_";
 }
-console.log(answer);
+console.log("Letters to Guess: " + answer);
 
+//Tracks # of letters remaining in word
+var answerLength = randomPokemon.length;
+console.log("Answer Length: " + answerLength);
 
+//Create a Variable to handle the user inputs
+var validGuesses = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+var guess = onkeyup(event)
 
-
-
-var remainingLetters = randomPokemon.length;
-//Need to figure out a way to print this name to the HTML"
+    // for (var j = 0; j < answerLength; j++) {
+    // if (_randomPokemon[j] === guess;);
+    // }
 
 //Add Event Listener for when User Guesses a Letter with document.addEventListener("keyup", function(event) {}
 
