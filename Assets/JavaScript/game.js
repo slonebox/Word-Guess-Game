@@ -37,8 +37,8 @@ currentPokemonText.innerHTML = randomPokemon;
 
     //Check if the randomPokemon contains the letter the user chose
         // for ( var i = 0; i < randomPokemon.length; i++ ) {
-        //  if letter is present, print the letter in the appropriate place on the screen AND log it in the "already guessed" area
-        //  if the letter is not 
+        //  if letter is present, print the letter in the appropriate place on the screen AND log it in the "already guessed" area.
+        //  if the letter is not present, reduce number of guesses left
         // }
 
 //
