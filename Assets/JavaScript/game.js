@@ -21,7 +21,11 @@ var lettersGuessedText = document.getElementById("letters-guessed-text");
 var winsText = document.getElementById("wins-text");
 var lossesText = document.getElementById("losses-text");
 
-clickFunction = function () {
+// Defines the valid guesses for the game
+var validGuesses = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+
+//Reference for figuring out how to make onclick event work
+clickFunction = function() {
     console.log("I was clicked");
 }
 
@@ -43,8 +47,13 @@ var answerLength = randomPokemon.length;
 console.log("Answer Length: " + answerLength);
 
 //Create a Variable to handle the user inputs
-var validGuesses = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-// var guess = onkeyup(event);
+document.onkeyup = function(event) {
+
+    // Event listener which stores the pressed key as an UpperCase letter
+    var guess = (event.key);
+    guess = guess.toUpperCase();
+    console.log(guess);
+}
 
     // for (var j = 0; j < answerLength; j++) {
     // if (_randomPokemon[j] === guess;);
@@ -59,4 +68,3 @@ var validGuesses = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O",
         // }
 
 //
-
