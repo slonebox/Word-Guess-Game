@@ -9,9 +9,6 @@ var guesses = 10;
 var lettersGuessed = [];
 console.log( "Wins: " + wins, "Losses: " + losses, "Guesses: " + guesses, "Letters Guessed: " + lettersGuessed);
 
-//Variable for the start button
-var startButton = document.getElementById("start-button");
-
 // Define variables that hold references to HTML elements that will display values
 var instructionsText = document.getElementById("instructions-text");
 var pokemonLabelText = document.getElementById("Pokemon-label-text");
@@ -53,14 +50,16 @@ document.onkeyup = function(event) {
     var guess = (event.key);
     guess = guess.toUpperCase();
 
-    // Checks if keystroke is a valid guess
+    // Checks if keystroke is a valid guess, stores it in letters guessed
         if (validGuesses.includes(guess)) {
             console.log(guess);
+            //Store guessed letter
+            lettersGuessed.push(guess);
+            }
+            console.log(lettersGuessed);
             //Adds guessed letter to HTML list
-            lettersGuessedText.append(guess);
+            lettersGuessedText.append(guess + ", ");
         }
-    
-}
 
     // for (var j = 0; j < answerLength; j++) {
     // if (_randomPokemon[j] === guess;);
