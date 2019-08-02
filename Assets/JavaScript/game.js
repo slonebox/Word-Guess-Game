@@ -56,7 +56,10 @@ document.onkeyup = function(event) {
     // Checks if keystroke is a valid guess
         if (validGuesses.includes(guess)) {
             console.log(guess);
+            //Adds guessed letter to HTML list
+            lettersGuessedText.append(guess);
         }
+    
 }
 
     // for (var j = 0; j < answerLength; j++) {
