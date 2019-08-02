@@ -50,15 +50,18 @@ document.onkeyup = function(event) {
     var guess = (event.key);
     guess = guess.toUpperCase();
 
-    // Checks if keystroke is a valid guess, stores it in letters guessed
-        if (validGuesses.includes(guess)) {
+    // Checks if keystroke is a valid guess, stores it in letters guessed, ensures only new valid letters can be guessed
+        if (validGuesses.includes(guess) && lettersGuessed.includes(guess) === false) {
             console.log(guess);
-            //Store guessed letter
+
+            //Store guess into lettersGuessed array
             lettersGuessed.push(guess);
-            }
-            console.log(lettersGuessed);
+            console.log("Letters Guessed: " + lettersGuessed);
+
             //Adds guessed letter to HTML list
-            lettersGuessedText.append(guess + ", ");
+            lettersGuessedText.append(guess + ", ")
+            }
+            ;
         }
 
     // for (var j = 0; j < answerLength; j++) {
