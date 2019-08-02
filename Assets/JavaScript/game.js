@@ -27,13 +27,14 @@ clickFunction = function () {
 
 //Select a random pokemon
 var randomPokemon = pokemon[Math.floor(Math.random() * pokemon.length)];
-console.log("Random Pokemon Generated: " + randomPokemon);
-currentPokemonText.textContent = randomPokemon;
+    console.log("Random Pokemon Generated: " + randomPokemon);
+    
 
 //Displays random word as an series of empty spaces to guess
 var answer = [];
 for (var i = 0; i < randomPokemon.length; i++) {
     answer[i] = "_";
+    currentPokemonText.append(answer[i] + " ");
 }
 console.log("Letters to Guess: " + answer);
 
@@ -43,7 +44,7 @@ console.log("Answer Length: " + answerLength);
 
 //Create a Variable to handle the user inputs
 var validGuesses = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-var guess = onkeyup(event)
+// var guess = onkeyup(event);
 
     // for (var j = 0; j < answerLength; j++) {
     // if (_randomPokemon[j] === guess;);
