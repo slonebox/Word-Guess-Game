@@ -21,9 +21,6 @@ var lettersGuessedText = document.getElementById("letters-guessed-text");
 var winsText = document.getElementById("wins-text");
 var lossesText = document.getElementById("losses-text");
 
-// Defines the valid guesses for the game
-var validGuesses = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-
 //Reference for figuring out how to make onclick event work
 clickFunction = function() {
     console.log("I was clicked");
@@ -49,10 +46,17 @@ console.log("Answer Length: " + answerLength);
 //Create a Variable to handle the user inputs
 document.onkeyup = function(event) {
 
+    // Defines the valid guesses for the game
+    var validGuesses = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+
     // Event listener which stores the pressed key as an UpperCase letter
     var guess = (event.key);
     guess = guess.toUpperCase();
-    console.log(guess);
+
+    // Checks if keystroke is a valid guess
+        if (validGuesses.includes(guess)) {
+            console.log(guess);
+        }
 }
 
     // for (var j = 0; j < answerLength; j++) {
@@ -65,6 +69,4 @@ document.onkeyup = function(event) {
         // for ( var i = 0; i < randomPokemon.length; i++ ) {
         //  if letter is present, print the letter in the appropriate place on the screen AND log it in the "already guessed" area.
         //  if the letter is not present, reduce number of guesses left
-        // }
-
-//
+        //
