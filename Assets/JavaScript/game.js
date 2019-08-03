@@ -24,7 +24,7 @@ var randomPokemon = pokemon[Math.floor(Math.random() * pokemon.length)];
 var answer = [];
 for (var i = 0; i < randomPokemon.length; i++) {
     answer[i] = "_";
-    currentPokemonText.append(answer[i] + " ");
+    currentPokemonText.textContent = answer;
 }
 
 //Display Initial Values for the Game
@@ -42,23 +42,38 @@ document.onkeyup = function(event) {
     // Event listener which stores the pressed key as an UpperCase letter
     var guess = (event.key);
     guess = guess.toUpperCase();
-    console.log("charAt 1: " + randomPokemon.charAt(1));
+
+    
+        
 
 
     // Checks if keystroke is a valid guess, stores it in letters guessed array, adds letters guessed to HTML ensures only new valid letters can be guessed, checks if letter is includes in randomPokemon
     if (validGuesses.includes(guess) && randomPokemon.includes(guess) && !lettersGuessed.includes(guess)) {
         lettersGuessed.push(guess);
         lettersGuessedText.append(guess + ", ");
-        for ( var j = 0; j < randomPokemon.length; j++) {
-            if (randomPokemon.charAt[j] === guess) {
-                answer.splice(j,1,guess);
+        for (var j = 0; j < randomPokemon.length; j++) {
+            if (randomPokemon.charAt(j) === guess) {
+            //Inserts the correctly guessed letter into the appropriate slot(s) in the answer variable
+            answer.splice(j,1,guess);
+            currentPokemonText.textContent = answer;
+            } else {
+            answer.splice(j,0);
             }
+            console.log(answer);
         }
+
     } else if (validGuesses.includes(guess) && !randomPokemon.includes(guess) && !lettersGuessed.includes(guess)) {
         lettersGuessed.push(guess);
         lettersGuessedText.append(guess + ", ")
         guessesLeft = guessesLeft - 1;
         guessesLeftText.textContent = "Guesses Left: " + guessesLeft;
+
+        //Game Over Scenarios: Alerts for wins and losses; changing the wins/losses; resetting the game
+        if (guessesLeft === 0) {
+        alert("Game Over. The Pokemon was " + randomPokemon + ".");
+        losses = losses + 1;
+        lossesText.textContent = "Losses: " + losses;
+        }
     } else if (validGuesses.includes(guess) && lettersGuessed.includes(guess)) {
         alert("Letter already guessed!");
     } else {
@@ -66,11 +81,7 @@ document.onkeyup = function(event) {
         }
 };
 
-    //Game Over Scenarios: Alerts for wins and losses; changing the wins/losses; resetting the game
-    if (guessesLeft === 0) {
-        alert("Game Over. The Pokemon was " + randomPokemon + ".");
     
-};
         
 
     //Check if the randomPokemon contains the letter the user chose
