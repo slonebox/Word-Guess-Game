@@ -18,26 +18,20 @@ var lossesText = document.getElementById("losses-text");
 var pokemon = ["BULBASAUR","CHARMANDER","SQUIRTLE","PIKACHU","EEVEE"];
 console.log("Pokemon Options:" + pokemon)
 
-//Select a random pokemon
+//Select a random pokemon and displays as a set of empty spaces
 var randomPokemon = pokemon[Math.floor(Math.random() * pokemon.length)];
     console.log("Random Pokemon Generated: " + randomPokemon);
+var answer = [];
+for (var i = 0; i < randomPokemon.length; i++) {
+    answer[i] = "_";
+    currentPokemonText.append(answer[i] + " ");
+}
 
 //Display Initial Values for the Game
 winsText.textContent = "Wins: " + wins;
 lossesText.textContent = "Losses: " + losses;
 guessesLeftText.textContent = "Guesses Left: " + guessesLeft;
 
-//Displays random word as an series of empty spaces to guess
-var answer = [];
-for (var i = 0; i < randomPokemon.length; i++) {
-    answer[i] = "_";
-    currentPokemonText.append(answer[i] + " ");
-}
-console.log("Letters to Guess: " + answer);
-
-//Tracks # of letters remaining in word
-var answerLength = randomPokemon.length;
-console.log("Answer Length: " + answerLength);
 
 //Create a Variable to handle the user inputs
 document.onkeyup = function(event) {
@@ -48,30 +42,34 @@ document.onkeyup = function(event) {
     // Event listener which stores the pressed key as an UpperCase letter
     var guess = (event.key);
     guess = guess.toUpperCase();
+    console.log("charAt 1: " + randomPokemon.charAt(1));
 
-    // Checks if keystroke is a valid guess, stores it in letters guessed, ensures only new valid letters can be guessed
-    if (validGuesses.includes(guess) && lettersGuessed.includes(guess) === false) {
-        console.log(guess);
 
-        //Store guess into lettersGuessed array
+    // Checks if keystroke is a valid guess, stores it in letters guessed array, adds letters guessed to HTML ensures only new valid letters can be guessed, checks if letter is includes in randomPokemon
+    if (validGuesses.includes(guess) && randomPokemon.includes(guess) && !lettersGuessed.includes(guess)) {
         lettersGuessed.push(guess);
-        console.log("Letters Guessed: " + lettersGuessed);
-
-        //Adds guessed letter to HTML list
+        lettersGuessedText.append(guess + ", ");
+        for ( var j = 0; j < randomPokemon.length; j++) {
+            if (randomPokemon.charAt[j] === guess) {
+                answer.splice(j,1,guess);
+            }
+        }
+    } else if (validGuesses.includes(guess) && !randomPokemon.includes(guess) && !lettersGuessed.includes(guess)) {
+        lettersGuessed.push(guess);
         lettersGuessedText.append(guess + ", ")
-    };
-    
-    // Checks if keystokes any of the letters in the randomPokemon, stores boolean in correctGuess variable. If true, letter populates in the correct spot in the answer array. If false, subtracts from # of guesses left and prints that to the HTML.
-    if (randomPokemon.includes(guess)){
-    var correctGuess = true;
-    } else {var correctGuess = false;
         guessesLeft = guessesLeft - 1;
-    }
+        guessesLeftText.textContent = "Guesses Left: " + guessesLeft;
+    } else if (validGuesses.includes(guess) && lettersGuessed.includes(guess)) {
+        alert("Letter already guessed!");
+    } else {
+        alert("Not a valid guess!");
+        }
+};
 
-    console.log("Correct Guess: " + correctGuess);
-    console.log(guessesLeft);
-
-
+    //Game Over Scenarios: Alerts for wins and losses; changing the wins/losses; resetting the game
+    if (guessesLeft === 0) {
+        alert("Game Over. The Pokemon was " + randomPokemon + ".");
+    
 };
         
 
