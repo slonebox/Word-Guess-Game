@@ -1,7 +1,3 @@
-// Define word options for the hangman game
-var pokemon = ["BULBASAUR","CHARMANDER","SQUIRTLE","PIKACHU","EEVEE"];
-console.log("Pokemon Options:" + pokemon)
-
 // Define variables that will record values for the game
 var wins = 0;
 var losses = 0;
@@ -18,15 +14,18 @@ var lettersGuessedText = document.getElementById("letters-guessed-text");
 var winsText = document.getElementById("wins-text");
 var lossesText = document.getElementById("losses-text");
 
-//Reference for figuring out how to make onclick event work
-clickFunction = function() {
-    console.log("I was clicked");
-}
+// Define word options for the hangman game
+var pokemon = ["BULBASAUR","CHARMANDER","SQUIRTLE","PIKACHU","EEVEE"];
+console.log("Pokemon Options:" + pokemon)
 
 //Select a random pokemon
 var randomPokemon = pokemon[Math.floor(Math.random() * pokemon.length)];
     console.log("Random Pokemon Generated: " + randomPokemon);
-    
+
+//Display Initial Values for the Game
+winsText.textContent = "Wins: " + wins;
+lossesText.textContent = "Losses: " + losses;
+guessesLeftText.textContent = "Guesses Left: " + guessesLeft;
 
 //Displays random word as an series of empty spaces to guess
 var answer = [];
@@ -62,12 +61,17 @@ document.onkeyup = function(event) {
         lettersGuessedText.append(guess + ", ")
     };
     
-    // Checks if keystokes any of the letters in the randomPokemon, stores them in the currentPokemonText, adjusts guessesLeft if incorrect
+    // Checks if keystokes any of the letters in the randomPokemon, stores boolean in correctGuess variable. If true, letter populates in the correct spot in the answer array. If false, subtracts from # of guesses left and prints that to the HTML.
     if (randomPokemon.includes(guess)){
-        console.log("Includes Letter: Yes");
-    } else {
-        console.log("Includes Letter: No");
+    var correctGuess = true;
+    } else {var correctGuess = false;
+        guessesLeft = guessesLeft - 1;
     }
+
+    console.log("Correct Guess: " + correctGuess);
+    console.log(guessesLeft);
+
+
 };
         
 
@@ -76,3 +80,8 @@ document.onkeyup = function(event) {
         //  if letter is present, print the letter in the appropriate place on the screen AND log it in the "already guessed" area.
         //  if the letter is not present, reduce number of guesses left
         //
+
+//Reference for figuring out how to make onclick event work
+clickFunction = function() {
+    console.log("I was clicked");
+}
