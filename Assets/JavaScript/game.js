@@ -5,9 +5,9 @@ console.log("Pokemon Options:" + pokemon)
 // Define variables that will record values for the game
 var wins = 0;
 var losses = 0;
-var guesses = 10;
+var guessesLeft = 10;
 var lettersGuessed = [];
-console.log( "Wins: " + wins, "Losses: " + losses, "Guesses: " + guesses, "Letters Guessed: " + lettersGuessed);
+console.log( "Wins: " + wins, "Losses: " + losses, "Guesses Left: " + guessesLeft, "Letters Guessed: " + lettersGuessed);
 
 // Define variables that hold references to HTML elements that will display values
 var instructionsText = document.getElementById("instructions-text");
@@ -51,24 +51,25 @@ document.onkeyup = function(event) {
     guess = guess.toUpperCase();
 
     // Checks if keystroke is a valid guess, stores it in letters guessed, ensures only new valid letters can be guessed
-        if (validGuesses.includes(guess) && lettersGuessed.includes(guess) === false) {
-            console.log(guess);
+    if (validGuesses.includes(guess) && lettersGuessed.includes(guess) === false) {
+        console.log(guess);
 
-            //Store guess into lettersGuessed array
-            lettersGuessed.push(guess);
-            console.log("Letters Guessed: " + lettersGuessed);
+        //Store guess into lettersGuessed array
+        lettersGuessed.push(guess);
+        console.log("Letters Guessed: " + lettersGuessed);
 
-            //Adds guessed letter to HTML list
-            lettersGuessedText.append(guess + ", ")
-            }
-            ;
-        }
-
-    // for (var j = 0; j < answerLength; j++) {
-    // if (_randomPokemon[j] === guess;);
-    // }
-
-//Add Event Listener for when User Guesses a Letter with document.addEventListener("keyup", function(event) {}
+        //Adds guessed letter to HTML list
+        lettersGuessedText.append(guess + ", ")
+    };
+    
+    // Checks if keystokes any of the letters in the randomPokemon, stores them in the currentPokemonText, adjusts guessesLeft if incorrect
+    if (randomPokemon.includes(guess)){
+        console.log("Includes Letter: Yes");
+    } else {
+        console.log("Includes Letter: No");
+    }
+};
+        
 
     //Check if the randomPokemon contains the letter the user chose
         // for ( var i = 0; i < randomPokemon.length; i++ ) {
