@@ -3,7 +3,6 @@ var wins = 0;
 var losses = 0;
 var guessesLeft = 10;
 var lettersGuessed = [];
-console.log( "Wins: " + wins, "Losses: " + losses, "Guesses Left: " + guessesLeft, "Letters Guessed: " + lettersGuessed);
 
 // Define variables that hold references to HTML elements that will display values
 var instructionsText = document.getElementById("instructions-text");
@@ -16,17 +15,24 @@ var lossesText = document.getElementById("losses-text");
 
 // Define word options for the hangman game
 var pokemon = ["BULBASAUR","CHARMANDER","SQUIRTLE","PIKACHU","EEVEE"];
-console.log("Pokemon Options:" + pokemon)
 
 //Select a random pokemon and displays as a set of empty spaces
-var randomPokemon = pokemon[Math.floor(Math.random() * pokemon.length)];
-    console.log("Random Pokemon Generated: " + randomPokemon);
-var answer = [];
-for (var i = 0; i < randomPokemon.length; i++) {
-    answer[i] = "_";
+function getRandomPokemon() {
+    return pokemon[Math.floor(Math.random() * pokemon.length)];
 }
- 
-randomPokemonText.textContent = String(answer);
+
+var randomPokemon = getRandomPokemon();
+console.log("Random Pokemon: " + randomPokemon);
+
+var answer = [];
+
+function displayAnswer() {
+    for (var i = 0; i < randomPokemon.length; i++) {
+        answer[i] = "_";
+    }
+    randomPokemonText.textContent = String(answer);
+}
+displayAnswer();
 
 function replaceCommas() {
     var str = randomPokemonText.innerHTML;
@@ -36,11 +42,23 @@ function replaceCommas() {
 
 replaceCommas();
 
-
 //Display Initial Values for the Game
 winsText.textContent = "Wins: " + wins;
 lossesText.textContent = "Losses: " + losses;
 guessesLeftText.textContent = "Guesses Left: " + guessesLeft;
+
+//Function to eventually reset the game
+function resetGame() {
+    lettersGuessed = [];
+    lettersGuessedText.textContent = lettersGuessed;
+    guessesLeft = 10;
+    guessesLeftText.textContent = "Guesses Left: " + guessesLeft;
+    answer = [];
+    randomPokemon = getRandomPokemon()
+    console.log("New Random Pokemon: " + randomPokemon);
+    displayAnswer();
+    replaceCommas();
+}
 
 
 //Create a Variable to handle the user inputs
@@ -67,13 +85,13 @@ document.onkeyup = function(event) {
             }
         randomPokemonText.textContent = answer;
         replaceCommas();
-        console.log(randomPokemonText);
         }
         //For a game-winning guess
         if (!answer.includes("_")){
             alert("You won! Congratulations!");
             wins = wins + 1;
             winsText.textContent = "Wins: " + wins;
+            resetGame();
         }
 
     } else if (validGuesses.includes(guess) && !randomPokemon.includes(guess) && !lettersGuessed.includes(guess)) {
@@ -87,21 +105,12 @@ document.onkeyup = function(event) {
         alert("Game Over. The Pokemon was " + randomPokemon + ".");
         losses = losses + 1;
         lossesText.textContent = "Losses: " + losses;
+        resetGame();
         }
+
     } else if (validGuesses.includes(guess) && lettersGuessed.includes(guess)) {
         alert("Letter already guessed!");
     } else {
         alert("Not a valid guess!");
         }
 };
-
-    //Check if the randomPokemon contains the letter the user chose
-        // for ( var i = 0; i < randomPokemon.length; i++ ) {
-        //  if letter is present, print the letter in the appropriate place on the screen AND log it in the "already guessed" area.
-        //  if the letter is not present, reduce number of guesses left
-        //
-
-//Reference for figuring out how to make onclick event work
-clickFunction = function() {
-    console.log("I was clicked");
-}
