@@ -8,7 +8,7 @@ console.log( "Wins: " + wins, "Losses: " + losses, "Guesses Left: " + guessesLef
 // Define variables that hold references to HTML elements that will display values
 var instructionsText = document.getElementById("instructions-text");
 var pokemonLabelText = document.getElementById("Pokemon-label-text");
-var currentPokemonText = document.getElementById("current-Pokemon-text");
+var randomPokemonText = document.getElementById("random-Pokemon-text");
 var guessesLeftText = document.getElementById("guesses-left-text");
 var lettersGuessedText = document.getElementById("letters-guessed-text");
 var winsText = document.getElementById("wins-text");
@@ -24,8 +24,13 @@ var randomPokemon = pokemon[Math.floor(Math.random() * pokemon.length)];
 var answer = [];
 for (var i = 0; i < randomPokemon.length; i++) {
     answer[i] = "_";
-    currentPokemonText.textContent = answer;
 }
+console.log(answer);    
+randomPokemonText.textContent = answer;
+console.log(randomPokemonText.textContent);
+randomPokemonText.textContent.replace(/","/g," ");
+console.log(randomPokemonText.textContent);
+
 
 //Display Initial Values for the Game
 winsText.textContent = "Wins: " + wins;
@@ -43,28 +48,31 @@ document.onkeyup = function(event) {
     var guess = (event.key);
     guess = guess.toUpperCase();
 
-    
-        
-
-
-    // Checks if keystroke is a valid guess, stores it in letters guessed array, adds letters guessed to HTML ensures only new valid letters can be guessed, checks if letter is includes in randomPokemon
+    // Checks if keystroke is a valid guess, stores it in letters guessed array, adds letters guessed to HTML ensures only new valid letters can be guessed, checks if letter is included in randomPokemon,adds letter if so, accounts for win/loss clinching guesses
     if (validGuesses.includes(guess) && randomPokemon.includes(guess) && !lettersGuessed.includes(guess)) {
         lettersGuessed.push(guess);
-        lettersGuessedText.append(guess + ", ");
+        lettersGuessedText.append(guess + " ");
         for (var j = 0; j < randomPokemon.length; j++) {
             if (randomPokemon.charAt(j) === guess) {
             //Inserts the correctly guessed letter into the appropriate slot(s) in the answer variable
+
             answer.splice(j,1,guess);
-            currentPokemonText.textContent = answer;
             } else {
             answer.splice(j,0);
             }
-            console.log(answer);
+        randomPokemonText.textContent = answer;
+        console.log(randomPokemonText);
+        }
+        //For a game-winning guess
+        if (!answer.includes("_")){
+            alert("You won! Congratulations!");
+            wins = wins + 1;
+            winsText.textContent = "Wins: " + wins;
         }
 
     } else if (validGuesses.includes(guess) && !randomPokemon.includes(guess) && !lettersGuessed.includes(guess)) {
         lettersGuessed.push(guess);
-        lettersGuessedText.append(guess + ", ")
+        lettersGuessedText.append(guess + " ")
         guessesLeft = guessesLeft - 1;
         guessesLeftText.textContent = "Guesses Left: " + guessesLeft;
 
@@ -80,9 +88,6 @@ document.onkeyup = function(event) {
         alert("Not a valid guess!");
         }
 };
-
-    
-        
 
     //Check if the randomPokemon contains the letter the user chose
         // for ( var i = 0; i < randomPokemon.length; i++ ) {
