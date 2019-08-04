@@ -5,8 +5,6 @@ var guessesLeft = 10;
 var lettersGuessed = [];
 
 // Define variables that hold references to HTML elements that will display values
-var instructionsText = document.getElementById("instructions-text");
-var pokemonLabelText = document.getElementById("Pokemon-label-text");
 var randomPokemonText = document.getElementById("random-Pokemon-text");
 var guessesLeftText = document.getElementById("guesses-left-text");
 var lettersGuessedText = document.getElementById("letters-guessed-text");
@@ -43,16 +41,16 @@ function replaceCommas() {
 replaceCommas();
 
 //Display Initial Values for the Game
-winsText.textContent = "Wins: " + wins;
-lossesText.textContent = "Losses: " + losses;
-guessesLeftText.textContent = "Guesses Left: " + guessesLeft;
+winsText.textContent = wins;
+lossesText.textContent = losses;
+guessesLeftText.textContent = guessesLeft;
 
 //Function to eventually reset the game
 function resetGame() {
     lettersGuessed = [];
     lettersGuessedText.textContent = lettersGuessed;
     guessesLeft = 10;
-    guessesLeftText.textContent = "Guesses Left: " + guessesLeft;
+    guessesLeftText.textContent = guessesLeft;
     answer = [];
     randomPokemon = getRandomPokemon()
     console.log("New Random Pokemon: " + randomPokemon);
@@ -90,7 +88,7 @@ document.onkeyup = function(event) {
         if (!answer.includes("_")){
             alert("You won! Congratulations!");
             wins = wins + 1;
-            winsText.textContent = "Wins: " + wins;
+            winsText.textContent = wins;
             resetGame();
         }
 
@@ -98,13 +96,13 @@ document.onkeyup = function(event) {
         lettersGuessed.push(guess);
         lettersGuessedText.append(guess + " ")
         guessesLeft = guessesLeft - 1;
-        guessesLeftText.textContent = "Guesses Left: " + guessesLeft;
+        guessesLeftText.textContent = guessesLeft;
 
         //Game Over Scenarios: Alerts for wins and losses; changing the wins/losses; resetting the game
         if (guessesLeft === 0) {
         alert("Game Over. The Pokemon was " + randomPokemon + ".");
         losses = losses + 1;
-        lossesText.textContent = "Losses: " + losses;
+        lossesText.textContent = losses;
         resetGame();
         }
 
