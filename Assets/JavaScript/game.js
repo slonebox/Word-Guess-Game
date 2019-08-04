@@ -25,11 +25,16 @@ var answer = [];
 for (var i = 0; i < randomPokemon.length; i++) {
     answer[i] = "_";
 }
-console.log(answer);    
-randomPokemonText.textContent = answer;
-console.log(randomPokemonText.textContent);
-randomPokemonText.textContent.replace(/","/g," ");
-console.log(randomPokemonText.textContent);
+ 
+randomPokemonText.textContent = String(answer);
+
+function replaceCommas() {
+    var str = randomPokemonText.innerHTML;
+    var res = str.replace(/,/g, " ");
+    randomPokemonText.innerHTML = res;
+}
+
+replaceCommas();
 
 
 //Display Initial Values for the Game
@@ -52,15 +57,16 @@ document.onkeyup = function(event) {
     if (validGuesses.includes(guess) && randomPokemon.includes(guess) && !lettersGuessed.includes(guess)) {
         lettersGuessed.push(guess);
         lettersGuessedText.append(guess + " ");
-        for (var j = 0; j < randomPokemon.length; j++) {
-            if (randomPokemon.charAt(j) === guess) {
+        for (var k = 0; k < randomPokemon.length; k++) {
+            if (randomPokemon.charAt(k) === guess) {
             //Inserts the correctly guessed letter into the appropriate slot(s) in the answer variable
 
-            answer.splice(j,1,guess);
+            answer.splice(k,1,guess);
             } else {
-            answer.splice(j,0);
+            answer.splice(k,0);
             }
         randomPokemonText.textContent = answer;
+        replaceCommas();
         console.log(randomPokemonText);
         }
         //For a game-winning guess
