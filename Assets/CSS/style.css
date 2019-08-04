@@ -1,0 +1,26 @@
+body {
+    background-color:rgb(31, 31, 31);
+}
+
+.aldrich  {
+    color: white;
+    font-family: 'Aldrich', sans-serif;
+}
+
+.img-holder {
+    align-items: flex-end;
+    display: flex;
+}
+
+#pikachu {
+    display: inline-block;
+    max-height: 200px;
+    max-width: 30vw;
+}
+
+#pokeball {
+    display: inline-block;
+    max-height: 150px;
+    max-width: 30vw;
+    vertical-align: bottom;
+}

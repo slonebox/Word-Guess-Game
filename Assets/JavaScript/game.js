@@ -1,7 +1,7 @@
 // Define variables that will record values for the game
 var wins = 0;
 var losses = 0;
-var guessesLeft = 10;
+var guessesLeft = 6;
 var lettersGuessed = [];
 
 // Define variables that hold references to HTML elements that will display values
@@ -49,7 +49,7 @@ guessesLeftText.textContent = guessesLeft;
 function resetGame() {
     lettersGuessed = [];
     lettersGuessedText.textContent = lettersGuessed;
-    guessesLeft = 10;
+    guessesLeft = 6;
     guessesLeftText.textContent = guessesLeft;
     answer = [];
     randomPokemon = getRandomPokemon()
@@ -86,7 +86,7 @@ document.onkeyup = function(event) {
         }
         //For a game-winning guess
         if (!answer.includes("_")){
-            alert("You won! Congratulations!");
+            alert(randomPokemon + " is correct! You won! Congratulations!");
             wins = wins + 1;
             winsText.textContent = wins;
             resetGame();
